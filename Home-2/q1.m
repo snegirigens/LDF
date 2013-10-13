@@ -1,8 +1,17 @@
-function q1 (n)
-	av1, avr, avm] = coin (1000)
+function q1 (N)						% repeat the experiment N times
+	results = zeros(N, 3);
+	coins = 1000;
+	
+	for i = 1 : N
+		results(i,:) = coin (coins);
+	end;
+	
+	av1 = sum(results(:,1))/N
+	avr = sum(results(:,2))/N
+	avm = sum(results(:,3))/N
 end;
 
-function [av1, avr, avm] = coin (m)		% toss m coins n times each
+function [result] = coin (m)		% toss m coins n times each
 	n = 10;
 	tosses = zeros(m, n);
 	
@@ -23,6 +32,7 @@ function [av1, avr, avm] = coin (m)		% toss m coins n times each
 	avr = sum(cr)/size(cr,2);
 	avm = sum(cm)/size(cm,2);
 	
+	result = [av1, avr, avm];
 end;
 
 function [result] = flip (n)

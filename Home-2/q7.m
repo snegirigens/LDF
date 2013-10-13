@@ -47,10 +47,12 @@ function [W, iterations] = perceptron (X, Y, W)
 	while (1)
 		iterations += 1;
 		again = 0;
+		random = randperm(n);
 		
 		for i = 1 : n
-			x = X(i,:);
-			y = Y(i);
+			r = random(i);
+			x = X(r,:);
+			y = Y(r);
 			h = sign(x * W);
 			
 			if (h != y)

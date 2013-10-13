@@ -4,7 +4,7 @@ function q6(n)
 %	hold on;
 %	axis ([-1, 1, -1, 1]);
 
-%	n = 10;
+%	n = 1;
 	m = 100;
 	inErrors  = zeros(n, 1);
 	outErrors = zeros(n, 1);
@@ -22,7 +22,7 @@ function q6(n)
 		inErrors(i)  = inError  (X, Y, W);
 		outErrors(i) = outError (T, W);
 		
-%		printf ('Ein = %.3f\n', errors(i));		
+%		printf ('Ein = %.3f\n', inErrors(i));		
 %		dispThreashold (W, '-r');
 	end;
 	
