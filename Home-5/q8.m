@@ -4,7 +4,8 @@ function q8
 %	hold on;
 %	axis ([-1, 1, -1, 1]);
 
-	n = 50;
+%	n = 1;
+	n = 100;
 	m = 100;
 	epoch = zeros(n, 1);
 	Eouts = zeros(n, 1);
@@ -43,9 +44,11 @@ function [w, epoch] = SGD (X, Y)
 
 	for epoch = 1 : 2000
 		cost = zeros (n, 1);
+		random = randperm(n);
 
 		for i = 1 : n
-			[cost(i), grad] = costFunc (X(i,:), Y(i), w);
+			j = random(i);
+			[cost(i), grad] = costFunc (X(j,:), Y(j), w);
 			w -= alpha * grad';
 		end;
 

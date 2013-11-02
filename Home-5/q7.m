@@ -10,7 +10,7 @@ function q7
 	cost = getCost (u, v);
 	history = [u, v, cost];
 	
-	while (cost > precision && size(history, 1) < 30)
+	while (size(history, 1) <= 31)
 		printf ('Cost = %g\n', cost);
 		[du, stam] = gradient (u, v);
 		u -= alpha * du;
