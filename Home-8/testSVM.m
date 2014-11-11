@@ -1,8 +1,9 @@
 function testSVM (digit1, digit2)
 	[X, Y] = loadData (digit1, digit2, 'train');
 	
-%	C = [0.0001; 0.001; 0.01; 0.1; 1];
-	C = [1000000];
+%	C = [0.001; 0.01; 0.1; 1];
+	C = [0.0001; 0.001; 0.01; 0.1; 1];
+%	C = [1000000];
 	m = length(C);
 	n = 1;
 	models = zeros (m, 1);

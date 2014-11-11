@@ -1,32 +1,36 @@
-function q13
+function q12
 	close all; clear;
-	figure; hold on;
+	figure; 
+	hold on;
 	axis ([-2, 2, -2, 2]);
+
+	n = 1;
+	W(1,:) = [-0.5, -1, 1];
+	W(2,:) = [-0.5, 1, -1];
+	W(3,:) = [-0.5, 1, 0];
+	W(4,:) = [-0.5, 0, 1];
+	
+	color = ["b", "g", "k", "r"];
 
 	X = [1, 0; 0, 1; 0, -1; -1, 0; 0, 2; 0, -2; -2, 0];
 	Y = [-1; -1; -1; 1; 1; 1; 1];
-	C = 1;
-	m = size (X, 1);
+	Z = transform (X);
 	
 	plotData (X, Y);
+
+	figure; hold on;
+	axis ([-5, 5, -5, 5]);
 	
-	[model] = svmTrain (X, Y, C);		
-	Ecv = svmTest (X, Y, model);
-	
-	printf ('SVMs = %d. Ein = %.3f. Eout = %.3f\n', model.totalSV, Ecv, model.totalSV/m);
+	for i = 1 : size(W, 1)
+%		figure; hold on;
+%		axis ([-5, 5, -5, 5]);
+		plotData (Z, Y);
+		dispThreashold (W(i,:), color(i));
+	end;
 end;
 
-function [model] = svmTrain (X, Y, C)
-	options = sprintf ('-s 0 -t 1 -d 2 -g 1 -r 1 -c %f', C);
-	model = svmtrain_mex (Y, X, options);
-end;
-
-function [Ecv] = svmTest (X, Y, model)
-	[prediction, acc] = svmpredict_mex (Y, X, model);
-%	printf ('SVM accurracy\n');
-%	disp (acc);
-	
-	Ecv = sum(double(prediction != Y)) / length(Y);
+function [Z] = transform (X)
+	Z = [X(:,2).^2 - 2*X(:,1) - 1, X(:,1).^2 - 2*X(:,2) + 1]
 end;
 
 function plotData (X, Y)

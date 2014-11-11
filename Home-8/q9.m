@@ -8,8 +8,8 @@ function q9 (digit1, digit2)
 		plotData (X, Y);
 	end;
 	
-%	C = [0.01; 1; 100; 10^4; 10^6];
-	C = [100];
+	C = [0.01; 1; 100; 10^4; 10^6];
+%	C = [100];
 	n = length (C);
 	Ein  = zeros (n, 1);
 	Eout = zeros (n, 1);

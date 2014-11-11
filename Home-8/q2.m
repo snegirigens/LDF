@@ -16,7 +16,7 @@ function q2
 	plot ([X(indxOfOnes, 1)], [X(indxOfOnes, 2)], 'bo');
 	plot ([X(indxOfRest, 1)], [X(indxOfRest, 2)], 'rx');
 	
-	return;
+%	return;
 	
 	n = 1000; 
 	m = 100;

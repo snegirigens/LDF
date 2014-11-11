@@ -1,12 +1,13 @@
 function q14_libsvm
 	close all; clear;
 %	figure; hold on;
-%	axis ([-1, 1, -1, 1]);
+%	axis ([-2, 2, -2, 2]);
 
+%	n = 100; 
 	n = 5000; 
 	m = 100;
 	gamma = 1.5;
-	C = 100000;
+	C = 1;
 	discarded = 0;
 
 % C = 1:     Not separable = 0.94. SVM Count: 32. Ein: 0.029. Eout: 0.325
@@ -46,7 +47,7 @@ function q14_libsvm
 		svmEins(i)   = Ecv;
 		svmEouts(i)  = svmCounts(i) / m;
 		
-		printf ('SVMs = %d. Ein = %.3f. Eout = %.3f\n', svmCounts(i), svmEins(i), svmEouts(i));
+%		printf ('SVMs = %d. Ein = %.3f. Eout = %.3f\n', svmCounts(i), svmEins(i), svmEouts(i));
 	end;
 	
 	printf ('C = %d: Not separable = %.2f. SVM Count: %d. Ein: %.3f. Eout: %.3f\n', C, (discarded/n), (sum (svmCounts)/n), (sum (svmEins)/n), (sum (svmEouts)/n));
@@ -81,8 +82,8 @@ end;
 function plotData (X, Y)
 	pos = find (Y > 0);
 	neg = find (Y < 0);
-	plot(X(pos, 1), X(pos, 2), "r*", 'MarkerSize', 2);
-	plot(X(neg, 1), X(neg, 2), "b+", 'MarkerSize', 2);
+	plot(X(pos, 1), X(pos, 2), "r*", 'MarkerSize', 6);
+	plot(X(neg, 1), X(neg, 2), "b+", 'MarkerSize', 6);
 end;
 
 function [x1, x2] = targetLine
